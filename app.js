@@ -65,7 +65,7 @@ function getAutoclicks() {
 }
 
 function getPrice1() {
-  return +localStorage.getItem('price1') ?? 10
+  return +localStorage.getItem('price1') ?? 100
 }
 
 function getPrice2() {
@@ -115,7 +115,7 @@ $reset.addEventListener('click', () => {
   setScore(0)
   setPower(1)
   setAutoclicks(0)
-  setPrice1(10)
+  setPrice1(100)
   setPrice2(10)
   setImage()
 })
