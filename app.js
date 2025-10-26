@@ -5,6 +5,7 @@ const $power = document.querySelector('#power')
 const $price1 = document.querySelector('#price1')
 const $auto = document.querySelector('#auto')
 const $price2 = document.querySelector('#price2')
+const $level = document.querySelector('#level')
 
 let coef = 1.15
 
@@ -14,8 +15,9 @@ function start() {
   setAutoclicks(getAutoclicks())
   setPrice1(getPrice1())
   setPrice2(getPrice2())
-  setImage()
-
+  setLevel(getLevel())
+  setChanger(getChanger())
+  
   setInterval(() => {
     setScore(getScore() + getAutoclicks())
   }, 1000)
@@ -24,6 +26,9 @@ function start() {
     else $power.style.background = '#46484c'
     if (getScore() >= getPrice2()) $auto.style.background = '#0c3b8c'
     else $auto.style.background = '#46484c'
+
+    setImage()
+    changeLevel()
   }, 100);
 }
 
@@ -48,6 +53,15 @@ function setPrice1(price1) {
 function setPrice2(price2) {
   localStorage.setItem('price2', price2)
   $price2.textContent = price2
+}
+
+function setLevel(level) {
+  localStorage.setItem('level', level)
+  $level.setAttribute('data-level', level)
+}
+
+function setChanger(changer) {
+  localStorage.setItem('changer', changer)
 }
 
 function setImage() {
@@ -76,6 +90,25 @@ function getPrice1() {
 
 function getPrice2() {
   return (+localStorage.getItem('price2') || 10)
+}
+
+function getLevel() {
+  return (+localStorage.getItem('level') || 1)
+}
+
+function getChanger() {
+  return  (+localStorage.getItem('changer') || 10)
+}
+
+function changeLevel() {
+  if (getScore() >= getChanger()) {
+    setLevel(getLevel()+1)
+    setChanger(getChanger()*10)
+    setScore(getScore()*2)
+    $level.style.setProperty('--levelAngle', '0deg')
+  } else {
+    $level.style.setProperty('--levelAngle', `${getScore()/getChanger()*360}deg`)
+  }
 }
 
 
@@ -138,6 +171,8 @@ $reset.addEventListener('click', () => {
   setAutoclicks(0)
   setPrice1(100)
   setPrice2(10)
+  setLevel(1)
+  setChanger(10)
   setImage()
 })
 

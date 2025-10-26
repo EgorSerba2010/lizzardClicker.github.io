@@ -18,6 +18,32 @@ body {
     width: 100%;
 }
 
+.level {
+  position: absolute;
+  top: 70px;
+  width: 1.8em;
+  height: 1.8em;
+  margin-left: calc(50% - 1.5em);
+  padding: 0.6em;
+  font: bold 1.4em Roboto;
+  --levelAngle: 30deg;
+  background: conic-gradient(#0c3b8c 0deg var(--levelAngle), #46484c var(--levelAngle) 360deg);
+  text-align: center;
+  border-radius: 50%;
+
+  &::before {
+    content: attr(data-level);
+    position: absolute;
+    top: 0.3em;
+    left: 0.3em;
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0.6em;
+    background: #757f92;
+    border-radius: 50%;
+  }
+}
+
 .upgrades {
     display: flex;
     justify-content: space-evenly;
