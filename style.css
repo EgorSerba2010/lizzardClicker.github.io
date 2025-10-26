@@ -83,7 +83,8 @@ body {
   transition: transform 0.2s ease;
   --tiltX: 0deg;
   --tiltY: 0deg;
-  transform: rotateX(var(--tiltX)) rotateY(var(--tiltY));
+  --scale: 1;
+  transform: rotateX(var(--tiltX)) rotateY(var(--tiltY)) scale(var(--scale));
 }
 
 .plus-one {

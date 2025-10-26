@@ -90,10 +90,12 @@ $circle.addEventListener('click', (event) => {
 
   $circle.style.setProperty('--tiltX', `${tiltX}deg`)
   $circle.style.setProperty('--tiltY', `${tiltY}deg`)
+  $circle.style.setProperty('--scale', '0.98')
 
   setTimeout(() => {
     $circle.style.setProperty('--tiltX', `0deg`)
     $circle.style.setProperty('--tiltY', `0deg`)
+    $circle.style.setProperty('--scale', '1')
   }, 300)
 
   const plusOne = document.createElement('div')
