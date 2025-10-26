@@ -72,12 +72,8 @@ function getPrice2() {
   return +localStorage.getItem('price2') ?? 10
 }
 
-function addOne() {
-  setScore(getScore() + getPower())
-  setImage()
-}
 
-$circle.addEventListener('click', (event) => {
+function clicking(event) {
   const rect = $circle.getBoundingClientRect()
 
   const offfsetX = event.clientX - rect.left - rect.width / 2
@@ -111,6 +107,23 @@ $circle.addEventListener('click', (event) => {
   setTimeout(() => {
     plusOne.remove()
   }, 2000)
+}
+
+function addOne() {
+  setScore(getScore() + getPower())
+  setImage()
+}
+
+window.addEventListener('keydown', (event) => {
+  const key = event.key
+  console.log(key)
+  if (key === ' ') {
+    clicking(event)
+  }
+})
+
+$circle.addEventListener('click', (event) => {
+  clicking(event)
 })
 
 $reset.addEventListener('click', () => {
