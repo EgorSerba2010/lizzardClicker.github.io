@@ -18,7 +18,13 @@ function start() {
 
   setInterval(() => {
     setScore(getScore() + getAutoclicks())
-  }, 1000);
+  }, 1000)
+  setInterval(() => {
+    if (getScore() >= getPrice1()) $power.style.background = '#0c3b8c'
+    else $power.style.background = '#46484c'
+    if (getScore() >= getPrice2()) $auto.style.background = '#0c3b8c'
+    else $auto.style.background = '#46484c'
+  }, 100);
 }
 
 function setScore(score) {
