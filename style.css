@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1f24;
+  color: #fff;
+  user-select: none;
+}
+
+.game {
+    width: 100%;
+}
+
+.upgrades {
+    display: flex;
+    justify-content: space-evenly;
+    font: bold 1.3em Roboto;
+
+    & > * {
+        position: relative;
+        width: 200px;
+        text-align: center;
+        padding: 0.5em;
+        background: #0c3b8c;
+        border-radius: 1.2em;
+        box-shadow: 0px 10px 16px 0px rgba(9, 9, 16, 0.9);
+
+        & > * {
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            height: 20px;
+            width: 20px;
+        }
+
+        & > div {
+            left: 45px;
+            top: -32px;
+        }
+
+        &:hover {
+            transition: transform 0.1s;
+            transform: scale(0.98);
+        }
+    }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header img {
+  width: 50px;
+  height: 50px;
+  margin-right: 14px;
+}
+
+.score {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.circle {
+  position: relative;
+  margin-left: calc(50% - 100px);
+}
+
+.circle img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 16px 0px rgba(138, 143, 254, 0.05);
+  transition: transform 0.2s ease;
+  --tiltX: 0deg;
+  --tiltY: 0deg;
+  transform: rotateX(var(--tiltX)) rotateY(var(--tiltY));
+}
+
+.plus-one {
+  position: absolute;
+  font-family: Inter;
+  text-shadow: 0px 0px 4px rgba(234, 182, 64, 0.25);
+  font-size: 24px;
+  font-weight: 800;
+  background: linear-gradient(180deg, #e8c547 0%, #ef882b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  pointer-events: none;
+  user-select: none;
+  animation: move-up 2s forwards;
+}
+
+@keyframes move-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+
+.reset {
+    width: 150px;
+    margin: 100px auto 0;
+    padding: 0.25em;
+    background: #888;
+    text-align: center;
+    font: bold 1.5em sans-serif;
+    border-radius: 1.5em;
+    box-shadow: 0px 10px 16px 0px rgba(9, 9, 16, 0.9);
+    cursor: pointer;
+
+    &:hover {
+        transition: transform 0.1s;
+        transform: scale(0.98);
+    }
+}
