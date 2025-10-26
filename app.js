@@ -59,23 +59,23 @@ function setImage() {
 }
 
 function getScore() {
-  return +localStorage.getItem('score') ?? 0
+  return (+localStorage.getItem('score') || 0)
 }
 
 function getPower() {
-  return +localStorage.getItem('power') ?? 1
+  return (+localStorage.getItem('power') || 1)
 }
 
 function getAutoclicks() {
-  return +localStorage.getItem('auto') ?? 0
+  return (+localStorage.getItem('auto') || 0)
 }
 
 function getPrice1() {
-  return +localStorage.getItem('price1') ?? 100
+  return (+localStorage.getItem('price1') || 100)
 }
 
 function getPrice2() {
-  return +localStorage.getItem('price2') ?? 10
+  return (+localStorage.getItem('price2') || 10)
 }
 
 
