@@ -20,7 +20,7 @@ body {
 
 .level {
   position: absolute;
-  top: 70px;
+  top: 15px;
   width: 1.8em;
   height: 1.8em;
   margin-left: calc(50% - 1.5em);
@@ -51,7 +51,8 @@ body {
 
     & > * {
         position: relative;
-        width: 150px;
+        width: 130px;
+        margin: 4px;
         text-align: center;
         padding: 0.5em;
         background: #46484c;
@@ -155,4 +156,18 @@ body {
         transition: transform 0.1s;
         transform: scale(0.98);
     }
+}
+
+@media (max-width: 500px) {
+  .upgrades {
+    font-size: 0.9em;
+
+    & > * > * {
+      top: -25px;
+    }
+
+    & > * > div  {
+      top: -23px;
+    }
+  }
 }

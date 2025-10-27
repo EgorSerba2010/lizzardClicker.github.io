@@ -2,9 +2,11 @@ const $circle = document.querySelector('#circle')
 const $score = document.querySelector('#score')
 const $reset = document.querySelector('#reset')
 const $power = document.querySelector('#power')
-const $price1 = document.querySelector('#price1')
 const $auto = document.querySelector('#auto')
+const $interval = document.querySelector('#interval')
+const $price1 = document.querySelector('#price1')
 const $price2 = document.querySelector('#price2')
+const $price3 = document.querySelector('#price3')
 const $level = document.querySelector('#level')
 
 let coef = 1.15
@@ -13,19 +15,23 @@ function start() {
   setScore(getScore())
   setPower(getPower())
   setAutoclicks(getAutoclicks())
+  setInter(getInter())
   setPrice1(getPrice1())
   setPrice2(getPrice2())
+  setPrice3(getPrice3())
   setLevel(getLevel())
   setChanger(getChanger())
   
   setInterval(() => {
     setScore(getScore() + getAutoclicks())
-  }, 1000)
+  }, getInter())
   setInterval(() => {
     if (getScore() >= getPrice1()) $power.style.background = '#0c3b8c'
     else $power.style.background = '#46484c'
     if (getScore() >= getPrice2()) $auto.style.background = '#0c3b8c'
     else $auto.style.background = '#46484c'
+    if (getScore() >= getPrice3()) $interval.style.background = '#0c3b8c'
+    else $interval.style.background = '#46484c'
 
     setImage()
     changeLevel()
@@ -45,6 +51,10 @@ function setAutoclicks(auto) {
   localStorage.setItem('auto', auto)
 }
 
+function setInter(interval) {
+  localStorage.setItem('interval', interval)
+}
+
 function setPrice1(price1) {
   localStorage.setItem('price1', price1)
   $price1.textContent = price1
@@ -53,6 +63,11 @@ function setPrice1(price1) {
 function setPrice2(price2) {
   localStorage.setItem('price2', price2)
   $price2.textContent = price2
+}
+
+function setPrice3(price3) {
+  localStorage.setItem('price3', price3)
+  $price3.textContent = price3
 }
 
 function setLevel(level) {
@@ -67,6 +82,12 @@ function setChanger(changer) {
 function setImage() {
   if (getScore() >= 10000) {
     $circle.setAttribute('src', './assets/lizzard.png')
+  } else if (getScore() === 69) {
+    $circle.setAttribute('src', './assets/zhenya.png')
+  } else if (getScore() === 1488) {
+    $circle.setAttribute('src', './assets/denis.png')
+  } else if (getScore() === 101) {
+    $circle.setAttribute('src', './assets/vanya.png')
   } else {
     $circle.setAttribute('src', './assets/frog.png')
   }
@@ -84,12 +105,20 @@ function getAutoclicks() {
   return (+localStorage.getItem('auto') || 0)
 }
 
+function getInter() {
+  return (+localStorage.getItem('interval') || 1000)
+}
+
 function getPrice1() {
   return (+localStorage.getItem('price1') || 100)
 }
 
 function getPrice2() {
   return (+localStorage.getItem('price2') || 10)
+}
+
+function getPrice3() {
+  return (+localStorage.getItem('price3') || 1000)
 }
 
 function getLevel() {
@@ -103,8 +132,8 @@ function getChanger() {
 function changeLevel() {
   if (getScore() >= getChanger()) {
     setLevel(getLevel()+1)
+    setScore(getScore()+getChanger())
     setChanger(getChanger()*10)
-    setScore(getScore()*2)
     $level.style.setProperty('--levelAngle', '0deg')
   } else {
     $level.style.setProperty('--levelAngle', `${getScore()/getChanger()*360}deg`)
@@ -169,8 +198,10 @@ $reset.addEventListener('click', () => {
   setScore(0)
   setPower(1)
   setAutoclicks(0)
+  setInter(1000)
   setPrice1(100)
   setPrice2(10)
+  setPrice3(1000)
   setLevel(1)
   setChanger(10)
   setImage()
@@ -191,6 +222,15 @@ $auto.addEventListener('click', () => {
 
     setScore(getScore() - getPrice2())
     setPrice2(Math.round(getPrice2()*coef))
+  }
+})
+
+$interval.addEventListener('click', () => {
+  if (getScore() >= getPrice3()){
+    setInter(getInter()*0.9)
+
+    setScore(getScore() - getPrice3())
+    setPrice3(Math.round(getPrice3()*coef))
   }
 })
 
