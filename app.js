@@ -28,7 +28,7 @@ console.log(user.id)*/
 let coef = 1.15
 
 function start() {
-  setScore(100000)
+  setScore(90000000)
   setPower(getPower())
   setAutoclicks(getAutoclicks())
   setInter(getInter())
@@ -96,7 +96,7 @@ function setChanger(changer) {
 }
 
 function setImage() {
-  if (getScore() >= 90000000) {
+  if (getScore() >= 10000) {
     $circle.setAttribute('src', './assets/lizzard.png')
   } else if (getScore() === 69) {
     $circle.setAttribute('src', './assets/zhenya.png')
