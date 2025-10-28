@@ -7,7 +7,10 @@ const $interval = document.querySelector('#interval')
 const $price1 = document.querySelector('#price1')
 const $price2 = document.querySelector('#price2')
 const $price3 = document.querySelector('#price3')
+const $speed = document.querySelector('#speed')
 const $level = document.querySelector('#level')
+
+const images = ['frog', 'lizzard', 'snake', 'tourtle', 'toad', 'lizzard2', 'tourtle2']
 
 /*const tg = {
   initDataUnsafe: {
@@ -35,6 +38,7 @@ function start() {
   setPrice1(getPrice1())
   setPrice2(getPrice2())
   setPrice3(getPrice3())
+  setSpeed(getSpeed())
   setLevel(getLevel())
   setChanger(getChanger())
   
@@ -49,8 +53,9 @@ function start() {
     if (getScore() >= getPrice3()) $interval.style.background = '#0c3b8c'
     else $interval.style.background = '#46484c'
 
-    setImage()
+    setImage(getScore())
     changeLevel()
+    changeSpeed(getAutoclicks(), getInter())
   }, 100);
 }
 
@@ -86,6 +91,11 @@ function setPrice3(price3) {
   $price3.textContent = price3
 }
 
+function setSpeed(speed) {
+  localStorage.setItem('speed', speed)
+  $speed.setAttribute('data-speed', speed+'/sec')
+}
+
 function setLevel(level) {
   localStorage.setItem('level', level)
   $level.setAttribute('data-level', level)
@@ -95,27 +105,16 @@ function setChanger(changer) {
   localStorage.setItem('changer', changer)
 }
 
-function setImage() {
-  if (getScore() >= 10000) {
-    $circle.setAttribute('src', './assets/lizzard.png')
-  } else if (getScore() === 69) {
+function setImage(score) {
+  if (score === 69) {
     $circle.setAttribute('src', './assets/zhenya.png')
-  } else if (getScore() === 1488) {
+  } else if (score === 1488) {
     $circle.setAttribute('src', './assets/denis.png')
-  } else if (getScore() === 101) {
+  } else if (score === 101) {
     $circle.setAttribute('src', './assets/vanya.png')
   } else {
-    $circle.setAttribute('src', './assets/frog.png')
+    $circle.setAttribute('src', `./assets/${images[getLevel()-1] || images.findLast()}.png`)
   }
-
-  // switch (key) {
-  //   case value:
-      
-  //     break;
-  
-  //   default:
-  //     break;
-  // }
 }
 
 function getScore() {
@@ -146,6 +145,10 @@ function getPrice3() {
   return (+localStorage.getItem('price3') || 1000)
 }
 
+function getSpeed() {
+  return (+localStorage.getItem('speed') || 0)
+}
+
 function getLevel() {
   return (+localStorage.getItem('level') || 1)
 }
@@ -155,7 +158,6 @@ function getChanger() {
 }
 
 function changeLevel() {
-  console.log(getChanger())
   if (getScore() >= getChanger()) {
     setLevel(getLevel()+1)
     setScore(getScore()+getChanger())
@@ -164,6 +166,10 @@ function changeLevel() {
   } else {
     $level.style.setProperty('--levelAngle', `${getScore()/getChanger()*360}deg`)
   }
+}
+
+function changeSpeed(auto, inter) {
+  setSpeed(1000*auto/inter)
 }
 
 
@@ -196,16 +202,11 @@ function clicking(event) {
 
   $circle.parentElement.appendChild(plusOne)
 
-  addOne()
+  setScore(getScore() + getPower())
 
   setTimeout(() => {
     plusOne.remove()
   }, 2000)
-}
-
-function addOne() {
-  setScore(getScore() + getPower())
-  setImage()
 }
 
 window.addEventListener('keydown', (event) => {

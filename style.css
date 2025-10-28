@@ -3,8 +3,8 @@
 html,
 body {
   margin: 0;
-  height: 100%;
   padding: 0;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -16,6 +16,26 @@ body {
 
 .game {
     width: 100%;
+}
+
+.speed {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0.9;
+
+  & > * {
+    height: 15px;
+    width: 15px;
+  }
+
+  &::before {
+    content: attr(data-speed);
+    position: absolute;
+    top: -1px;
+    left: 10px;
+    padding-left: 10px;
+  }
 }
 
 .level {
