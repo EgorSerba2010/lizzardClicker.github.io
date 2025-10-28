@@ -9,10 +9,26 @@ const $price2 = document.querySelector('#price2')
 const $price3 = document.querySelector('#price3')
 const $level = document.querySelector('#level')
 
+/*const tg = {
+  initDataUnsafe: {
+    user: {
+      id: 123456,
+      username: 'cotraff',
+      first_name: 'Егор'
+    }
+  }
+}
+
+const user = tg.initDataUnsafe.user
+
+console.log(user.username) // 👉 @username
+console.log(user.first_name)
+console.log(user.id)*/
+
 let coef = 1.15
 
 function start() {
-  setScore(getScore())
+  setScore(100000)
   setPower(getPower())
   setAutoclicks(getAutoclicks())
   setInter(getInter())
@@ -230,7 +246,7 @@ $interval.addEventListener('click', () => {
     setInter(getInter()*0.9)
 
     setScore(getScore() - getPrice3())
-    setPrice3(Math.round(getPrice3()*coef))
+    setPrice3(Math.round(getPrice3()*coef*coef))
   }
 })
 
