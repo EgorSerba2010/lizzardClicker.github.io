@@ -108,14 +108,14 @@ function setImage() {
     $circle.setAttribute('src', './assets/frog.png')
   }
 
-  switch (key) {
-    case value:
+  // switch (key) {
+  //   case value:
       
-      break;
+  //     break;
   
-    default:
-      break;
-  }
+  //   default:
+  //     break;
+  // }
 }
 
 function getScore() {
@@ -155,6 +155,7 @@ function getChanger() {
 }
 
 function changeLevel() {
+  console.log(getChanger())
   if (getScore() >= getChanger()) {
     setLevel(getLevel()+1)
     setScore(getScore()+getChanger())
