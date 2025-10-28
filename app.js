@@ -28,7 +28,7 @@ console.log(user.id)*/
 let coef = 1.15
 
 function start() {
-  setScore(90000000)
+  setScore(getScore())
   setPower(getPower())
   setAutoclicks(getAutoclicks())
   setInter(getInter())
