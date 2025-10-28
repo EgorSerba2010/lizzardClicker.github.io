@@ -96,7 +96,7 @@ function setChanger(changer) {
 }
 
 function setImage() {
-  if (getScore() >= 10000) {
+  if (getScore() >= 90000000) {
     $circle.setAttribute('src', './assets/lizzard.png')
   } else if (getScore() === 69) {
     $circle.setAttribute('src', './assets/zhenya.png')
@@ -106,6 +106,15 @@ function setImage() {
     $circle.setAttribute('src', './assets/vanya.png')
   } else {
     $circle.setAttribute('src', './assets/frog.png')
+  }
+
+  switch (key) {
+    case value:
+      
+      break;
+  
+    default:
+      break;
   }
 }
 
