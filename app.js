@@ -55,7 +55,7 @@ function start() {
 
     setImage(getScore())
     changeLevel()
-    changeSpeed(getAutoclicks(), getInter())
+    changeSpeed()
   }, 100);
 }
 
@@ -113,7 +113,7 @@ function setImage(score) {
   } else if (score === 101) {
     $circle.setAttribute('src', './assets/vanya.png')
   } else {
-    $circle.setAttribute('src', `./assets/${images[getLevel()-1] || images.findLast()}.png`)
+    $circle.setAttribute('src', `./assets/${images[getLevel()-1] || images.at(-1)}.png`)
   }
 }
 
@@ -168,8 +168,9 @@ function changeLevel() {
   }
 }
 
-function changeSpeed(auto, inter) {
-  setSpeed(1000*auto/inter)
+function changeSpeed() {
+  // setSpeed(1000*getAutoclicks()/getInter())
+  setSpeed(Math.round(1000000*getAutoclicks()/getInter())/1000)
 }
 
 
