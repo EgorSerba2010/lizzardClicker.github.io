@@ -74,7 +74,7 @@ body {
 
 .level {
   position: absolute;
-  top: 15px;
+  top: 40px;
   width: 1.8em;
   height: 1.8em;
   margin-left: calc(50% - 1.5em);
@@ -288,20 +288,23 @@ body {
 }
 
 .reset {
-    width: 150px;
-    margin: 100px auto 0;
-    padding: 0.25em;
-    background: #888;
-    text-align: center;
-    font: bold 1.5em sans-serif;
-    border-radius: 1.5em;
-    box-shadow: 0px 10px 16px 0px rgba(9, 9, 16, 0.9);
-    cursor: pointer;
+  position: relative;
+  top: 150px;
+  width: 150px;
+  margin: 0 auto;
+  padding: 0.25em;
+  background: #888;
+  text-align: center;
+  font: bold 1em sans-serif;
+  border-radius: 1.5em;
+  /* box-shadow: 0px 10px 16px 0px rgba(9, 9, 16, 0.9); */
+  opacity: 0.1;
+  cursor: pointer;
 
-    &:hover {
-        transition: transform 0.1s;
-        transform: scale(0.98);
-    }
+  &:hover {
+      transition: transform 0.1s;
+      transform: scale(0.98);
+  }
 }
 
 @media (max-width: 500px) {
