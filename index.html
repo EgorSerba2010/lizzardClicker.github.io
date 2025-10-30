@@ -11,7 +11,10 @@
         <div class="speed" id="speed">
             <img src="./assets/coin.png" alt="coin">
         </div>
-        <div class="level" id="level">1</div>
+        <!-- <div class="level" id="level"></div> -->
+        <input type="checkbox" id="true-level">
+        <label for="true-level" class="level" id="level"></label>
+        
         <div class="upgrades">
             <div id="power">
                 <img src="./assets/coin.png" alt="coin">
@@ -29,16 +32,48 @@
                 Interval-
             </div>
         </div>
+        
         <div class="header">
             <img src="./assets/coin.png" alt="coin">
             <h2 class="score" id="score"></h2>
         </div>
+        
         <div class="circle">
             <img id="circle" src="./assets/frog.png" alt="frog">
         </div>
+        
         <div class="reset" id="reset">Reset score</div>
-    </div>
 
-    <script type="module" src="app.js" defer></script>
+
+        <div class="list" id="list">
+            <div class="user-list">
+                <div class="user-level"></div>
+                <div class="user-statistic"></div>
+                <h3>Standart characters:</h3>
+            </div>
+            <div class="stan-list">
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+                <div class="locked stan" >?</div>
+            </div>
+            <h3>Unic characters:</h3>
+            <div class="unic-list">
+                <div class="locked unic">?</div>
+                <div class="locked unic">?</div>
+                <div class="locked unic">?</div>
+            </div>
+        </div>
+    </div>
+    <div class="dark" id="dark"></div>
+
+    <script src="app.js" defer></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </body>
 </html>
