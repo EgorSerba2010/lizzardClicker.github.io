@@ -141,7 +141,7 @@ body {
         display: flex;
         align-items: center;
         line-height: 8;
-        font: 1em Roboto;
+        font: 1.1em Roboto;
       }
 
       & > h3 {
