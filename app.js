@@ -256,7 +256,7 @@ $circle.addEventListener('click', (event) => {
 })
 
 $reset.addEventListener('click', () => {
-  setScore(50000)
+  setScore(1000000)
   setPower(1)
   setAutoclicks(0)
   setInter(1000)
@@ -337,6 +337,7 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log('Язык:', user.language_code)
 
     // Пример: вставить имя в интерфейс
+    $userLevel.textContent = getLevel()
     $userStat.textContent = `Username: ${user.username} \n Level: ${getLevel()}`
   } else {
     console.log('Нет данных — приложение не запущено из Telegram')
