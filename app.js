@@ -14,12 +14,10 @@ const $dark = document.querySelector('#dark')
 
 const $list = document.querySelector('#list')
 const $userLevel = document.querySelector('.user-level')
+const $userName = document.querySelector('.user-name')
 const $userStat = document.querySelector('.user-statistic')
 const $stanChars = document.querySelectorAll('.stan')
 const $unicChars = document.querySelectorAll('.unic')
-
-// const tg = window.Telegram.WebApp
-// const user = tg.initDataUnsafe.user
 
 const images = ['frog', 'lizzard', 'snake', 'tourtle', 'snake3', 'toad', 'snake2', 'lizzard2', 'frog2', 'tourtle2']
 
@@ -37,6 +35,7 @@ function start() {
   setLevel(getLevel())
   setChanger(getChanger())
   setCharacters()
+  setUnicCharacters()
 
   
   setInterval(() => {
@@ -51,6 +50,9 @@ function start() {
     else $interval.style.background = '#46484c'
 
     setImage(getScore())
+    setUnic1(getUnic1())
+    setUnic2(getUnic2())
+    setUnic3(getUnic3())
     changeLevel()
     changeSpeed()
   }, 100);
@@ -88,6 +90,18 @@ function setPrice3(price3) {
   $price3.textContent = round(price3)
 }
 
+function setUnic1(unic1) {
+  localStorage.setItem('unic1', unic1)
+}
+
+function setUnic2(unic2) {
+  localStorage.setItem('unic2', unic2)
+}
+
+function setUnic3(unic3) {
+  localStorage.setItem('unic3', unic3)
+}
+
 function setSpeed(speed) {
   localStorage.setItem('speed', speed)
   $speed.setAttribute('data-speed', round(speed)+'/sec')
@@ -107,14 +121,17 @@ function setImage(score) {
     $circle.setAttribute('src', './assets/zhenya.png')
     $unicChars[0].style.backgroundImage = `url('./assets/zhenya.png')`
     $unicChars[0].textContent = ''
+    setUnic1(1)
   } else if (score === 1488) {
     $circle.setAttribute('src', './assets/denis.png')
     $unicChars[1].style.backgroundImage = `url('./assets/denis.png')`
     $unicChars[1].textContent = ''
+    setUnic2(1)
   } else if (score === 101) {
     $circle.setAttribute('src', './assets/vanya.png')
     $unicChars[2].style.backgroundImage = `url('./assets/vanya.png')`
     $unicChars[2].textContent = ''
+    setUnic3(1)
   } else {
     $circle.setAttribute('src', `./assets/${images[getLevel()-1] || images.at(-1)}.png`)
   }
@@ -124,6 +141,21 @@ function setCharacters() {
   for (let i = 0; i < getLevel(); i++) {
     $stanChars[i].style.backgroundImage = `url('./assets/${images[i] || images.at(-1)}.png')`
     $stanChars[i].textContent = ''
+  }
+}
+
+function setUnicCharacters() {
+  if (getUnic1() === 1) {
+    $unicChars[0].style.backgroundImage = `url('./assets/zhenya.png')`
+    $unicChars[0].textContent = ''
+  }
+  if (getUnic2() === 1) {
+    $unicChars[1].style.backgroundImage = `url('./assets/denis.png')`
+    $unicChars[1].textContent = ''
+  }
+  if (getUnic3() === 1) {
+    $unicChars[2].style.backgroundImage = `url('./assets/vanya.png')`
+    $unicChars[2].textContent = ''
   }
 }
 
@@ -156,6 +188,18 @@ function getPrice3() {
   return (+localStorage.getItem('price3') || 1000)
 }
 
+function getUnic1() {
+  return (+localStorage.getItem('unic1') || 0)
+}
+
+function getUnic2() {
+  return (+localStorage.getItem('unic2') || 0)
+}
+
+function getUnic3() {
+  return (+localStorage.getItem('unic3') || 0)
+}
+
 function getSpeed() {
   return (+localStorage.getItem('speed') || 0)
 }
@@ -171,8 +215,6 @@ function getChanger() {
 function changeLevel() {
   $stanChars[getLevel()-1].style.backgroundImage = `url('./assets/${images[getLevel()-1] || images.at(-1)}.png')`
   $stanChars[getLevel()-1].textContent = ''
-
-  // setUserStats()
 
   if (getScore() >= getChanger()) {
     setLevel(getLevel()+1)
@@ -256,7 +298,7 @@ $circle.addEventListener('click', (event) => {
 })
 
 $reset.addEventListener('click', () => {
-  setScore(1000000)
+  setScore(0)
   setPower(1)
   setAutoclicks(0)
   setInter(1000)
@@ -297,34 +339,10 @@ $interval.addEventListener('click', () => {
 })
 
 
-// const tg = {
-//   initDataUnsafe: {
-//     user: {
-//       id: 123456,
-//       username: 'cotraff',
-//       first_name: 'Егор'
-//     }
-//   }
-// }
-
-// const user = tg.initDataUnsafe.user
-
-// console.log(user.username) // 👉 @username
-// console.log(user.first_name)
-// console.log(user.id)
-
-// function setUserStats() {
-//   $userLevel.textContent = getLevel()
-//   $userStat.textContent = `Username: ${user.username} \n Level: ${getLevel()}`
-// }
-
 $level.addEventListener('click', () => {
   if (!$trueLevel.checked) $dark.style.display = 'block'
   else $dark.style.display = 'none'
-})
 
-
-window.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram.WebApp
 
   if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
@@ -336,13 +354,28 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log('Юзернейм:', user.username)
     console.log('Язык:', user.language_code)
 
-    // Пример: вставить имя в интерфейс
     $userLevel.textContent = getLevel()
-    $userStat.textContent = `Username: ${user.username} \n Level: ${getLevel()}`
+    $userName.textContent = `Username: cotraff`
+    $userStat.textContent = `Level: ${getLevel()}`
   } else {
     console.log('Нет данных — приложение не запущено из Telegram')
   }
 })
 
+$stanChars.forEach(el => {
+  el.addEventListener('click', () => {
+    if (!el.classList.contains('clicked')) {
+      el.classList.add('clicked')
+    } else el.classList.remove('clicked')
+  })
+})
+
+$unicChars.forEach(el => {
+  el.addEventListener('click', () => {
+    if (!el.classList.contains('clicked')) {
+      el.classList.add('clicked')
+    } else el.classList.remove('clicked')
+  })
+})
 
 start()

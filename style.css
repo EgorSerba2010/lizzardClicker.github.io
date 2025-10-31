@@ -74,7 +74,7 @@ body {
 
 .level {
   position: absolute;
-  top: 40px;
+  top: 25px;
   width: 1.8em;
   height: 1.8em;
   margin-left: calc(50% - 1.5em);
@@ -105,7 +105,7 @@ body {
 .list {
     position: fixed;
     width: 80vw;
-    height: 160vw;
+    height: 80vh;
     margin: 0 10vw;
     background: #3a3c3f;
     color: #ddd;
@@ -115,7 +115,7 @@ body {
     border-radius: 15px;
     overflow: auto;
     z-index: 2;
-    top: -200vh;
+    top: -400vh;
     transition: 0.5s ease-out;
 
     & > .user-list {
@@ -136,12 +136,16 @@ body {
         border-radius: 50%;
       }
 
-      & > .user-statistic {
-        grid-area: 1 / 4 / 4 / 9;
+      & > .user-name, .user-statistic {
+        grid-area: 1 / 4 / 3 / 9;
         display: flex;
         align-items: center;
-        line-height: 8;
+        /* line-height: 8; */
         font: 1.1em Roboto;
+      }
+
+      & > .user-statistic {
+        grid-area: 2 / 4 / 4 / 9;
       }
 
       & > h3 {
@@ -154,7 +158,6 @@ body {
 
     & > .stan-list, .unic-list {
       display: flex;
-      /* flex-direction: column; */
       justify-content: space-evenly;
       align-items: center;
       flex-wrap: wrap;
@@ -167,21 +170,27 @@ body {
         align-items: center;
         margin: 5vw 0;
         background: #000;
-        /* background-image: url(./assets/frog.png); */
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         font: bold 2em Roboto;
         border: 2px solid #555;
-        box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
         border-radius: 50%;
       }
-    }
 
+      & > .clicked {
+        position: absolute;
+        left: 30vw;
+        transform: scale(3);
+        box-shadow: 0px 10px 16px rgba(0, 0, 0, 1);
+      }
+    }
+    
     & > h3 {
       text-align: center;
     }
-}
+  }
 
 
 
